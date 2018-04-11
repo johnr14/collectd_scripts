@@ -57,6 +57,9 @@ hp-asmcli-pwr.sh
 hp-asmcli-fan.sh
 ![alt text](images/hp-asmcli-fan.png "Fan")
 
+ping.sh
+![alt text](images/ping.png "Ping")
+
 # The folder grafana 
 It contains my json to import the grap query.
 You will need rename the hostname to your own.
