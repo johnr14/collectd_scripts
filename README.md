@@ -60,8 +60,12 @@ hp-asmcli-fan.sh
 ping.sh
 ![alt text](images/ping.png "Ping")
 
-zfs.sh
-![alt text](images/zfs-scrub.png "Scrub")
+zfs.sh scrubing
+![alt text](images/zfs-scrubing.png "Scrubing")
+zfs.sh scrub remaining
+![alt text](images/zfs-scrub_remaining.png "Scrub remaining")
+zfs.sh free space
+![alt text](images/zfs-free.png "Free")
 
 # The folder grafana 
 It contains my json to import the grap query.

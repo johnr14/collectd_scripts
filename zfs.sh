@@ -52,9 +52,20 @@ while sleep "$INTERVAL"; do
 	SCRUB_BYTES=$(echo "$STATUS" | grep scanned | awk '{ print $1}' | awk '{ system("numfmt --from=iec "$1) }')
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubBytes_${POOL} interval=$INTERVAL N:${SCRUB_BYTES}"
 	#Repaired
-	SCRUB_REPAIRED=$(echo "$STATUS" | grep repaired | awk '{ print $1 }' | sed 's/,//g' | awk '{ system("numfmt --from=iec $1") }')
+	SCRUB_REPAIRED=$(echo "$STATUS" | grep repaired | awk '{ print $1 }' | sed 's/,//g') # | numfmt --from=iec )
+	if [[ $SCRUB_REPAIRED == "0B" || -n $SCRUB_REPAIRED ]]; then 
+                SCRUB_REPAIRED=0
+        else
+                SCRUB_REPAIRED=$(echo "$SCRUB_REPAIRED" | numfmt --from=iec )
+        fi
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubRepaired_${POOL} interval=$INTERVAL N:${SCRUB_REPAIRED}"
-	#TODO: % done
+	#ScrubDone in %
+	SCRUB_DONE=$(echo "$STATUS" | grep repaired | awk '{ print $3}' | sed -e 's/%//g')
+	echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolScrubDone_${POOL} interval=$INTERVAL N:${SCRUB_DONE}"
+	#ScrubTimeRemaining
+	SCRUB_TIME_REMAINING=$(echo "$STATUS" | grep scanned | awk '{ print $8}' | sed 's/h/ /g;s/m//g' | awk '{print ($1*60+$2)}')
+	echo "PUTVAL ${HOSTNAME}/zpool-status/gauge-PoolScrubTimeRemaining_${POOL} interval=$INTERVAL N:${SCRUB_TIME_REMAINING}"
+
     fi
 
     #Check scrub status
@@ -62,8 +73,17 @@ while sleep "$INTERVAL"; do
 	#echo "Pool was scrubed and it is finished"
        	#look for "scrub repaired"
 	#grep "scrub repaired" | awk '{ print $4" "$6" "$8}'
+
 	#ScrubRepair
-	SCRUB_REPAIRED=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print $4 }' | numfmt --from=iec $1)
+	#BUG
+	#numfmt: invalid suffix in input: ‘0B’
+
+	SCRUB_REPAIRED=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print $4 }') # | numfmt --from=iec $1)
+	if [[ $SCRUB_REPAIRED == "0B" || -n $SCRUB_REPAIRED ]]; then
+		SCRUB_REPAIRED=0
+	else
+		SCRUB_REPAIRED=$(echo "$SCRUB_REPAIRED" | numfmt --from=iec )
+	fi
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubRepaired_${POOL} interval=$INTERVAL N:${SCRUB_REPAIRED}"
 	#ScrubTime
 	SCRUB_TIME=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print $6}' | sed 's/h/ /g;s/m//g' | awk '{print ($1*60+$2)}')
