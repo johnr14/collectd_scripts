@@ -52,5 +52,12 @@ In /etc/collectd/collectd.conf:
 
 hp-asmcli-temp.sh
 ![alt text](images/hp-asmcli-temp.png "Temperatures")
+hp-asmcli-pwr.sh
+![alt text](images/hp-asmcli-pwr.png "Power")
+hp-asmcli-fan.sh
+![alt text](images/hp-asmcli-fan.png "Fan")
 
+# The folder grafana 
+It contains my json to import the grap query.
+You will need rename the hostname to your own.
 
