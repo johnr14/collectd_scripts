@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This script uses hpasmcli to read ProLiant temperatures.
+# This script uses hp ssacli to read ProLiant arrays
+# Work in progress !
 
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname -f)}"
 INTERVAL="${COLLECTD_INTERVAL:-1}"

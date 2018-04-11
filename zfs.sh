@@ -54,6 +54,7 @@ while sleep "$INTERVAL"; do
 	#Repaired
 	SCRUB_REPAIRED=$(echo "$STATUS" | grep repaired | awk '{ print $1 }' | sed 's/,//g' | awk '{ system("numfmt --from=iec $1") }')
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubRepaired_${POOL} interval=$INTERVAL N:${SCRUB_REPAIRED}"
+	#TODO: % done
     fi
 
     #Check scrub status
@@ -62,7 +63,7 @@ while sleep "$INTERVAL"; do
        	#look for "scrub repaired"
 	#grep "scrub repaired" | awk '{ print $4" "$6" "$8}'
 	#ScrubRepair
-	SCRUB_REPAIRED=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print system("numfmt --from=iec $4")}')
+	SCRUB_REPAIRED=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print $4 }' | numfmt --from=iec $1)
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubRepaired_${POOL} interval=$INTERVAL N:${SCRUB_REPAIRED}"
 	#ScrubTime
 	SCRUB_TIME=$(echo "$STATUS" | grep "scrub repaired" | awk '{ print $6}' | sed 's/h/ /g;s/m//g' | awk '{print ($1*60+$2)}')
@@ -83,7 +84,7 @@ while sleep "$INTERVAL"; do
     echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolFree_${POOL} interval=$INTERVAL N:${FREE}"
     #PoolUsage
     echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolUsage_${POOL} interval=$INTERVAL N:${PERCENTUSAGE}"
-    #PoolFree
+    #PoolUnused
     echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolUnused_${POOL} interval=$INTERVAL N:${PERCENTFREE}"
     #PoolHealth
     echo "PUTVAL ${HOSTNAME}/zpool-status/gauge-PoolHealth_${POOL} interval=$INTERVAL N:${HEALTH}"
