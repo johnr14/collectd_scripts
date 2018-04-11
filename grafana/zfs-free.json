@@ -3,15 +3,15 @@
   "bars": false,
   "dashLength": 10,
   "dashes": false,
-  "datasource": "collectd",
+  "datasource": null,
   "fill": 1,
   "gridPos": {
     "h": 10,
-    "w": 6,
-    "x": 16,
+    "w": 7,
+    "x": 9,
     "y": 55
   },
-  "id": 49,
+  "id": 51,
   "legend": {
     "alignAsTable": true,
     "avg": false,
@@ -21,9 +21,7 @@
     "show": true,
     "total": false,
     "values": true,
-    "hideEmpty": false,
-    "hideZero": false,
-    "sortDesc": true
+    "rightSide": false
   },
   "lines": true,
   "linewidth": 1,
@@ -55,19 +53,19 @@
       "yaxis": 2
     },
     {
-      "alias": "RaidZ Scrub time",
+      "alias": "Apool free",
       "yaxis": 2
     },
     {
-      "alias": "Apool scrubed (bytes)",
+      "alias": "Apool free %",
       "yaxis": 2
     },
     {
-      "alias": "RaidZ scrubed",
+      "alias": "RaidZ free %",
       "yaxis": 2
     },
     {
-      "alias": "Apool scrubed",
+      "alias": "rpool free %",
       "yaxis": 2
     }
   ],
@@ -76,7 +74,7 @@
   "steppedLine": false,
   "targets": [
     {
-      "alias": "RaidZ Scrub time",
+      "alias": "rpool free space",
       "groupBy": [
         {
           "params": [
@@ -86,15 +84,16 @@
         },
         {
           "params": [
-            "none"
+            "previous"
           ],
           "type": "fill"
         }
       ],
+      "hide": false,
       "measurement": "zpool_value",
       "orderByTime": "ASC",
       "policy": "default",
-      "refId": "A",
+      "refId": "D",
       "resultFormat": "time_series",
       "select": [
         [
@@ -120,13 +119,112 @@
           "condition": "AND",
           "key": "type_instance",
           "operator": "=",
-          "value": "PoolScrubTime_RaidZ"
+          "value": "PoolFree_rpool"
         }
-      ],
-      "hide": true
+      ]
     },
     {
+      "alias": "Apool free space",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "zpool_value",
+      "orderByTime": "ASC",
+      "policy": "default",
       "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        },
+        {
+          "condition": "AND",
+          "key": "type_instance",
+          "operator": "=",
+          "value": "PoolFree_Apool"
+        }
+      ]
+    },
+    {
+      "alias": "RaidZ free space",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "zpool_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        },
+        {
+          "condition": "AND",
+          "key": "type_instance",
+          "operator": "=",
+          "value": "PoolFree_RaidZ"
+        }
+      ]
+    },
+    {
+      "refId": "A",
       "policy": "default",
       "resultFormat": "time_series",
       "orderByTime": "ASC",
@@ -140,7 +238,7 @@
           "condition": "AND",
           "key": "type_instance",
           "operator": "=",
-          "value": "PoolScrubRepaired_Apool"
+          "value": "PoolUsage_Apool"
         }
       ],
       "groupBy": [
@@ -172,308 +270,8 @@
         ]
       ],
       "measurement": "zpool_value",
-      "alias": "Apool Scrub Repaired",
+      "alias": "Apool free %",
       "hide": true
-    },
-    {
-      "alias": "RaidZ Scrub speed",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "linear"
-          ],
-          "type": "fill"
-        }
-      ],
-      "measurement": "zpool_value",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "refId": "G",
-      "resultFormat": "time_series",
-      "select": [
-        [
-          {
-            "params": [
-              "value"
-            ],
-            "type": "field"
-          },
-          {
-            "params": [],
-            "type": "mean"
-          }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubSpeed_RaidZ"
-        }
-      ],
-      "hide": false
-    },
-    {
-      "alias": "Apool Scrub repaired",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "none"
-          ],
-          "type": "fill"
-        }
-      ],
-      "measurement": "zpool_value",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "refId": "I",
-      "resultFormat": "time_series",
-      "select": [
-        [
-          {
-            "params": [
-              "value"
-            ],
-            "type": "field"
-          },
-          {
-            "params": [],
-            "type": "mean"
-          }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubRepaired_Apool"
-        }
-      ],
-      "hide": true
-    },
-    {
-      "alias": "RaidZ Scrub repaired",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "none"
-          ],
-          "type": "fill"
-        }
-      ],
-      "measurement": "zpool_value",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "refId": "H",
-      "resultFormat": "time_series",
-      "select": [
-        [
-          {
-            "params": [
-              "value"
-            ],
-            "type": "field"
-          },
-          {
-            "params": [],
-            "type": "mean"
-          }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubRepaired_RaidZ"
-        }
-      ],
-      "hide": true
-    },
-    {
-      "alias": "Apool Scrub speed",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "linear"
-          ],
-          "type": "fill"
-        }
-      ],
-      "measurement": "zpool_value",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "refId": "C",
-      "resultFormat": "time_series",
-      "select": [
-        [
-          {
-            "params": [
-              "value"
-            ],
-            "type": "field"
-          },
-          {
-            "params": [],
-            "type": "mean"
-          }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubSpeed_Apool"
-        }
-      ],
-      "hide": false
-    },
-    {
-      "alias": "Apool Scrub time",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "linear"
-          ],
-          "type": "fill"
-        }
-      ],
-      "measurement": "zpool_value",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "refId": "J",
-      "resultFormat": "time_series",
-      "select": [
-        [
-          {
-            "params": [
-              "value"
-            ],
-            "type": "field"
-          },
-          {
-            "params": [],
-            "type": "mean"
-          }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubTime_Apool"
-        }
-      ],
-      "hide": false
-    },
-    {
-      "refId": "D",
-      "policy": "default",
-      "resultFormat": "time_series",
-      "orderByTime": "ASC",
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=",
-          "value": "ML350G6RK.home"
-        },
-        {
-          "condition": "AND",
-          "key": "type_instance",
-          "operator": "=",
-          "value": "PoolScrubBytes_Apool"
-        }
-      ],
-      "groupBy": [
-        {
-          "type": "time",
-          "params": [
-            "$__interval"
-          ]
-        },
-        {
-          "type": "fill",
-          "params": [
-            "linear"
-          ]
-        }
-      ],
-      "select": [
-        [
-          {
-            "type": "field",
-            "params": [
-              "value"
-            ]
-          },
-          {
-            "type": "mean",
-            "params": []
-          }
-        ]
-      ],
-      "measurement": "zpool_value",
-      "alias": "Apool scrubed",
-      "hide": false
     },
     {
       "refId": "E",
@@ -490,7 +288,7 @@
           "condition": "AND",
           "key": "type_instance",
           "operator": "=",
-          "value": "PoolScrubBytes_RaidZ"
+          "value": "PoolUsage_RaidZ"
         }
       ],
       "groupBy": [
@@ -503,7 +301,7 @@
         {
           "type": "fill",
           "params": [
-            "linear"
+            "null"
           ]
         }
       ],
@@ -522,13 +320,64 @@
         ]
       ],
       "measurement": "zpool_value",
-      "alias": "RaidZ scrubed"
+      "alias": "RaidZ free %",
+      "hide": true
+    },
+    {
+      "refId": "F",
+      "policy": "default",
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        },
+        {
+          "condition": "AND",
+          "key": "type_instance",
+          "operator": "=",
+          "value": "PoolUsage_rpool"
+        }
+      ],
+      "groupBy": [
+        {
+          "type": "time",
+          "params": [
+            "$__interval"
+          ]
+        },
+        {
+          "type": "fill",
+          "params": [
+            "null"
+          ]
+        }
+      ],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "value"
+            ]
+          },
+          {
+            "type": "mean",
+            "params": []
+          }
+        ]
+      ],
+      "measurement": "zpool_value",
+      "alias": "rpool free %",
+      "hide": true
     }
   ],
   "thresholds": [],
-  "timeFrom": null,
+  "timeFrom": "1d",
   "timeShift": null,
-  "title": "zpool scrubing",
+  "title": "zpool free",
   "tooltip": {
     "shared": true,
     "sort": 0,
@@ -544,8 +393,8 @@
   },
   "yaxes": [
     {
-      "decimals": 0,
-      "format": "bytes",
+      "decimals": 2,
+      "format": "bits",
       "label": "",
       "logBase": 1,
       "max": null,
@@ -554,7 +403,7 @@
     },
     {
       "decimals": 0,
-      "format": "bytes",
+      "format": "percent",
       "label": "",
       "logBase": 1,
       "max": null,
