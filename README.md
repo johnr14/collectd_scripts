@@ -69,6 +69,6 @@ zfs.sh free space
 ![alt text](images/zfs-free.png "Free")
 
 # The folder grafana 
-It contains my json to import the grap query.
+It contains my json to import the graf query.
 You will need rename the hostname to your own.
 
