@@ -1,0 +1,1174 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": null,
+  "fill": 1,
+  "gridPos": {
+    "h": 13,
+    "w": 10,
+    "x": 0,
+    "y": 22
+  },
+  "id": 44,
+  "legend": {
+    "alignAsTable": true,
+    "avg": false,
+    "current": false,
+    "max": true,
+    "min": true,
+    "rightSide": true,
+    "show": true,
+    "total": false,
+    "values": true
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "Ambiant",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "01_AMBIENT"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Board1",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "D",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "24_SYSTEM_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Board2",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "E",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "22_SYSTEM_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "CPU1",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "F",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "02_PROCESSOR_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "CPU2",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "G",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "03_PROCESSOR_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "SAS",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "21_SCSI_BACKPLANE_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory1",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "04_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory2",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "H",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "05_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory3",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "I",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "06_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory4",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "J",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "07_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory5",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "K",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "08_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory6",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "L",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "09_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory7",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "M",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "10_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "Memory8",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "N",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "11_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "MemoryBD",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "O",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "20_MEMORY_BD"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone1",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "P",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "12_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone2",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "Q",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "13_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone3",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "R",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "14_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone4",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "S",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "15_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone5",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "T",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "16_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone6",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "U",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "17_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    },
+    {
+      "alias": "IO_Zone7",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "temperature_value",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "V",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "type_instance",
+          "operator": "=",
+          "value": "18_IO_ZONE"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=",
+          "value": "ML350G6RK.home"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": "24h",
+  "timeShift": null,
+  "title": "Temperatures",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "celsius",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}

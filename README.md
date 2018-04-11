@@ -50,6 +50,6 @@ In /etc/collectd/collectd.conf:
 ###Results :
 
 hp-asmcli-temp.sh
-![Temps](../images/hp-asmcli-temp.png)
+![alt text](../images/hp-asmcli-temp.png "Temperatures")
 
 
