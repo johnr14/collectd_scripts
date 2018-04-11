@@ -2,7 +2,6 @@
 
 # This script uses hpasmcli to read ProLiant temperatures.
 # Based on work from Mark Nellemann https://mark.nellemann.nu/2015/02/12/hp-proliant-fan-temperature-monitoring/
-# Jonathan Rioux https://github.com/johnr14
 
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname -f)}"
 INTERVAL="${COLLECTD_INTERVAL:-1}"

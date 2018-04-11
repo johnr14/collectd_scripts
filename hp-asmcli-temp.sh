@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Original from https://mark.nellemann.nu/2015/02/12/hp-proliant-fan-temperature-monitoring/
 # This script uses hpasmcli to read ProLiant temperatures.
 
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname -f)}"
