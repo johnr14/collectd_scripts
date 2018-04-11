@@ -25,13 +25,14 @@ in bytes :
 in % :
   pool usage
   pool unused
-  pool scrubed % (TODO)
+  pool scrubed % 
 in boolean (1=ok, 2=BAD)
   pool health
 in bytes/sec:
   pool scrub speed
 in time:
   pool scrubed total time
+  pool scrub remaining time
 in int:
   pool scrub repaired errors
   ```
