@@ -45,7 +45,8 @@ In /etc/collectd/collectd.conf:
         Exec "daemon" "/usr/local/bin/hp-asmcli-fans.sh"
         Exec "daemon" "/usr/local/bin/hp-asmcli-pwr.sh"
         Exec "daemon" "/usr/local/bin/zfs.sh"
-</Plugin>```
+</Plugin>
+```
 
 ###Results :
 
