@@ -14,8 +14,25 @@ while sleep "$INTERVAL"; do
   LOGICALDRV=$(echo "$HPCONFIG" | grep "logicaldrive" | awk '{ split($0, STR,","); print "LogicalDrive "$2" "STR[3]; }' | sed 's/)//g')
   PHYSICALDRV=$(echo "$HPCONFIG" | grep "physicaldrive" | awk '{ split($0, STR,","); print "PhysicalDrive "$2" " STR[4]; }' | sed 's/)//g')
 
- echo "$LOGICALDRV"
- echo "$PHYSICALDRV"
+#  echo "$LOGICALDRV"
+#  echo "$PHYSICALDRV"
+
+  for LDRIVE in $LOGICALDRV; do
+#	echo "$LOGICALDRV"
+	LDRIVE_NB=$(echo "$LDRIVE" | awk '{ print $2 }')
+	LDRIVE_HEALTH=$(echo "$LDRIVE" | awk '{ if ($3 == "OK") print "1"; else print "2"}')
+	echo "PUTVAL ${HOSTNAME}/ldrive-hpssacli/gauge-LDrive.${LDRIVE_NB} interval=$INTERVAL N:${LDRIVE_HEALTH}"
+  done
+
+  for PDRIVE in $PHYSICALDRV; do
+#	echo "$PDRIVE"
+        PDRIVE_NB=$(echo "$PDRIVE" | sed 's/)//g' | awk '{ print $2 }' | sed 's/:/_/g')
+        PDRIVE_HEALTH=$(echo "$LDRIVE" | awk '{ if ($3 == "OK") print "1"; else print "2"}')
+#	echo $PDRIVE_NB
+        echo "PUTVAL ${HOSTNAME}/pdrive-hpssacli/gauge-PDrive.${PDRIVE_NB} interval=$INTERVAL N:${PDRIVE_HEALTH}"
+
+  done
+
 
 #  for line in $(sudo -n /sbin/ssascli "ctrl all show config"); do
 
