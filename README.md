@@ -60,6 +60,9 @@ hp-asmcli-fan.sh
 ping.sh
 ![alt text](images/ping.png "Ping")
 
+zfs.sh
+![alt text](images/zfs-scrub.png "Scrub")
+
 # The folder grafana 
 It contains my json to import the grap query.
 You will need rename the hostname to your own.
