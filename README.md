@@ -3,8 +3,8 @@ Scripts for collectd : HP Proliant G6, ping, ZFS
 
 ## hp-asmcli-*
 Uses hpasmcli to read :
-Fans
-Power usage (power meter in PSU)
+Fans,
+Power usage (power meter in PSU),
 Temperatures (22 readings)
 
 ## hp-ssacli-array.sh
