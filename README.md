@@ -72,3 +72,6 @@ zfs.sh free space
 It contains my json to import the graf query.
 You will need rename the hostname to your own.
 
+## Notes :
+Scrubing doesn't differentiate between a scrub and a resilver. It will report speed and remaining time. Might flag something else in the future.
+Also, ZFS ZED could be a nice source of info to monitor.
