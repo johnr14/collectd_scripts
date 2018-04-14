@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# This script uses hpasmcli to read ProLiant temperatures.
-# Based on work from Mark Nellemann https://mark.nellemann.nu/2015/02/12/hp-proliant-fan-temperature-monitoring/
+# This script uses ZFS zpool.
 # Jonathan Rioux https://github.com/johnr14
 
 
@@ -15,16 +14,19 @@ while sleep "$INTERVAL"; do
 
  #Keep it inside the loop so we can update new pools
  ZPOOL=$(/sbin/zpool list -p | tail -n +2)
+ ZFSLIST=$(/sbin/zfs list -p | tail -n +2) #NOT USED, TO GET MORE PRECISE USAGE/FREE SPACE THAN ZPOOL
 
  #get a list of pools
  POOLS=$(echo "$ZPOOL" | awk '{ print $1}')
-
+ POOLS=$(echo "$ZPOOL" | awk '{ print $1}')
 
 
   for POOL in $POOLS; do
 
     #Get values of the pools
+
     SIZE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print $2}')
+    #SIZE=$(echo "$ZFSLIST" | grep "$POOL" | head -n1 | awk '{ print [}') #TO DO
     ALLOC=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print $3}')
     FREE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print $4}')
     PERCENTFREE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print ($4/$2*100)}')
@@ -104,7 +106,7 @@ while sleep "$INTERVAL"; do
     echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolFree_${POOL} interval=$INTERVAL N:${FREE}"
     #PoolUsage
     echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolUsage_${POOL} interval=$INTERVAL N:${PERCENTUSAGE}"
-    #PoolUnused
+    #PoolUnused NOTE: IT USES ZPOOL TOTAL POOL SIZE, SO IN RAIDZ-1-2-3 IT DOESN'T EQUAL TOTAL REAL SPACE FOR WRITING
     echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolUnused_${POOL} interval=$INTERVAL N:${PERCENTFREE}"
     #PoolHealth
     echo "PUTVAL ${HOSTNAME}/zpool-status/gauge-PoolHealth_${POOL} interval=$INTERVAL N:${HEALTH}"
