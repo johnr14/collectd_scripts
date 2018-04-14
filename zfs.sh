@@ -28,7 +28,7 @@ while sleep "$INTERVAL"; do
     ALLOC=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print $3}')
     FREE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print $4}')
     PERCENTFREE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print ($4/$2*100)}')
-    PERCENTUSAGE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print ($4/$2*100)}')
+    PERCENTUSAGE=$(echo "$ZPOOL" | grep "$POOL" | awk '{ print ($3/$2*100)}')
 
     #HEALTH 0-1:GOOD or 2:BAD
     HEALTH=$(echo "$ZPOOL" | grep "$POOL" | awk '{ if ($9!="ONLINE") print "2"; else print "1"}')
@@ -46,21 +46,21 @@ while sleep "$INTERVAL"; do
 	#grep scanned | awk '{ print $1" "$7}' | sed 's/,//g'
 	#Convert values to bytes and  M/s
 	#ScrubSpeed
-	SCRUB_SPEED=$(echo "$STATUS" | grep scanned | awk '{ print $1" "$7}' | awk '{ print $2}' | sed -e 's/,//g' -e 's/\/s//g' | numfmt --from=iec) 
+	SCRUB_SPEED=$(echo "$STATUS" | grep scanned | awk '{ print $1" "$7}' | awk '{ print $2}' | sed -e 's/,//g' -e 's/\/s//g' | numfmt --from=iec)
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubSpeed_${POOL} interval=$INTERVAL N:${SCRUB_SPEED}"
 	#Scrubbed
 	SCRUB_BYTES=$(echo "$STATUS" | grep scanned | awk '{ print $1}' | awk '{ system("numfmt --from=iec "$1) }')
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubBytes_${POOL} interval=$INTERVAL N:${SCRUB_BYTES}"
 	#Repaired
-	SCRUB_REPAIRED=$(echo "$STATUS" | grep repaired | awk '{ print $1 }' | sed 's/,//g') # | numfmt --from=iec )
-	if [[ $SCRUB_REPAIRED == "0B" || -n $SCRUB_REPAIRED ]]; then 
+	SCRUB_REPAIRED=$(echo "$STATUS" | grep -e repaired -e "resilvered," | awk '{ print $1 }' | sed 's/,//g') # | numfmt --from=iec )
+	if [[ $SCRUB_REPAIRED == "0B" || -n $SCRUB_REPAIRED ]]; then
                 SCRUB_REPAIRED=0
         else
                 SCRUB_REPAIRED=$(echo "$SCRUB_REPAIRED" | numfmt --from=iec )
         fi
 	echo "PUTVAL ${HOSTNAME}/zpool-status/bytes-PoolScrubRepaired_${POOL} interval=$INTERVAL N:${SCRUB_REPAIRED}"
 	#ScrubDone in %
-	SCRUB_DONE=$(echo "$STATUS" | grep repaired | awk '{ print $3}' | sed -e 's/%//g')
+	SCRUB_DONE=$(echo "$STATUS" | grep -e repaired -e "resilvered," | awk '{ print $3}' | sed -e 's/%//g')
 	echo "PUTVAL ${HOSTNAME}/zpool-status/percent-PoolScrubDone_${POOL} interval=$INTERVAL N:${SCRUB_DONE}"
 	#ScrubTimeRemaining
 	SCRUB_TIME_REMAINING=$(echo "$STATUS" | grep scanned | awk '{ print $8}' | sed 's/h/ /g;s/m//g' | awk '{print ($1*60+$2)}')
